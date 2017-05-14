@@ -87,3 +87,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+traincnn2.py
+intents_train.py
+serve.py

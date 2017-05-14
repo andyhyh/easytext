@@ -1,0 +1,49 @@
+{
+  "name": "cnntest",
+  "max_length": 5000,
+  "vocabulary_size": 5000,
+  "embedding_size": 200,
+  "num_class": 46,
+  "cnn_layers": [
+    {
+      "depth": 2,
+      "filters": [64,128],
+      "kernels": [3,3],
+      "poolings": [2,2],
+      "dropouts": [0.5,0.5]
+    },
+    {
+      "depth":2,
+      "filters": [64,128],
+      "kernels": [4,4],
+      "poolings": [2,2],
+      "dropouts": [0.5,0.5]
+    },
+    {
+      "depth":2,
+      "filters": [128,256],
+      "kernels": [5,5],
+      "poolings": [2,2],
+      "dropouts": [0.5,0.5]
+    },
+    {
+      "depth":1,
+      "filters": [64],
+      "kernels": [6],
+      "poolings": [2],
+      "dropouts": [0.5]
+    },
+    {
+      "depth":1,
+      "filters": [64],
+      "kernels": [8],
+      "poolings": [2],
+      "dropouts": [0.5]
+    }
+  ],
+  "dense_layers": {
+    "depth":1,
+    "size": [128],
+    "dropouts": [0.5]
+  }
+}

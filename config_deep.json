@@ -1,0 +1,28 @@
+{
+  "name": "cnntest",
+  "max_length": 5000,
+  "vocabulary_size": 5000,
+  "embedding_size": 200,
+  "num_class": 46,
+  "cnn_layers": [
+    {
+      "depth":6,
+      "filters": [48,64,128,256,512,1024],
+      "kernels": [5,5,5,5,5,5],
+      "poolings": [2,2,2,2,2,2],
+      "dropouts": [0.5,0.5,0.5,0.5,0.5,0.5]
+    },
+    {
+      "depth":1,
+      "filters": [64],
+      "kernels": [12],
+      "poolings": [2],
+      "dropouts": [0.5]
+    }
+  ],
+  "dense_layers": {
+    "depth":1,
+    "size": [128],
+    "dropouts": [0.5]
+  }
+}

@@ -36,7 +36,8 @@ history = cnn.model.fit(
     batch_size=32,
     epochs=1,
     verbose=1,
-    validation_data=(x_test,y_test)
+    validation_split=0.1
+    #validation_data=(x_test,y_test)
 )
 
 score = cnn.model.evaluate(

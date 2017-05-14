@@ -4,8 +4,26 @@ from keras.models import Model
 
 class TextCNN(object):
 
+  def validate_config(self, config):
+    valid = True
+    for layer in config['cnn_layers']:
+      if not (layer['depth'] == len(layer['filters']) 
+              and layer['depth'] == len(layer['kernels']) 
+              and layer['depth'] == len(layer['poolings'])
+              and layer['depth'] == len(layer['dropouts'])):
+        print("conv layers failed to validate")
+        return False
+    if not (config['dense_layers']['depth'] == len(config['dense_layers']['size'])
+            and config['dense_layers']['depth'] == len(config['dense_layers']['dropouts'])):
+      print("fully connected layers failed to validate")
+      return False
+    return True
+
   def __init__(self, config):
     
+    if not self.validate_config(config):
+      print('validation failed')
+      return
     input = Input(shape=(config['max_length'],), name='input')
     
     #input may be used for different channels - for now just 1 embedding channel
@@ -62,9 +80,9 @@ class TextCNN(object):
     #dense layers
     next_entry = concat
     for index in xrange(config['dense_layers']['depth']):
-      dense = Dense(units=config['dense_layers']['size'][index], activation='relu')(next_entry)
-      drop = Dropout(rate=config['dense_layers']['dropouts'][index])(dense)
-      next_entry = drop
+      drop = Dropout(rate=config['dense_layers']['dropouts'][index])(next_entry)
+      dense = Dense(units=config['dense_layers']['size'][index], activation='relu')(drop)
+      next_entry = dense
 
     out = Dense(config['num_class'], activation='softmax')(next_entry)
 

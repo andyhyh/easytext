@@ -48,10 +48,6 @@ score = cnn.model.evaluate(
 print('eval score: ', score[0])
 print('eval accuracy: ', score[1])
 
-cnn.model.save_weights('/home/andy/Desktop/models/insurance_faq.h5')
-modelw = open('/home/andy/Desktop/models/insurance_faq.config.json', 'w')
-modelw.write(cnn.model.to_json())
-
-cnn.model.save('./reuter_model')
+cnn.model.save('./textcnn_model')
 
 #use average pooling for word vector convolution
